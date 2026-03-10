@@ -1,15 +1,50 @@
+/*Es un archivo tsconfig.json de TypeScript, utilizado para 
+configurar el comportamiento del compilador de TypeScript 
+en el proyecto. En proyectos de Expo (ecosistema de React Native), 
+normalmente se parte de una configuración base proporcionada por Expo
+y luego se añaden ajustes propios.
+*/
+
 {
+  // Indica que este proyecto hereda la configuración base de TypeScript
+  // proporcionada por Expo. Esto incluye configuraciones optimizadas
+  // para proyectos React Native con Expo.
   "extends": "expo/tsconfig.base",
+
   "compilerOptions": {
+    // Activa el modo estricto de TypeScript.
+    // Habilita múltiples checks estrictos como:
+    // - strictNullChecks
+    // - noImplicitAny
+    // - strictFunctionTypes
+    // Esto mejora la seguridad de tipos y reduce bugs.
     "strict": true,
+
+    // Permite crear alias de rutas para evitar imports largos
+    // o relativos como ../../../components/Button
     "paths": {
+
+      // El alias "@/" apuntará a la carpeta ./src
+      // Ejemplo:
+      // import Button from "@/components/Button"
       "@/*": ["./src/*"]
     }
   },
+  
   "include": [
+    // Incluye todos los archivos TypeScript del proyecto
+    // en cualquier carpeta
     "**/*.ts",
+
+    // Incluye todos los archivos TSX (React + TypeScript)
     "**/*.tsx",
+
+    // Incluye los tipos generados automáticamente por Expo
+    // dentro de la carpeta .expo
     ".expo/types/**/*.ts",
+
+    // Archivo de definiciones de tipos para variables
+    // de entorno de Expo (por ejemplo process.env)
     "expo-env.d.ts"
   ]
 }
